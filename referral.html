@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refer & Earn — Wealthy Home | Angel One</title>
+</head>
+<body style="margin:0; padding:24px 12px; background:#eef1f7; font-family: 'Helvetica Neue', Arial, sans-serif;">
+
+<div id="ref-flyer-root"></div>
+
+<style>
+  #ref-flyer-root {
+    --navy-deep: #0a1f44;
+    --navy: #0f2a5c;
+    --navy-mid: #163a75;
+    --blue-accent: #2e6ff2;
+    --emerald: #0f9d6e;
+    --gold: #d4a017;
+    --paper: #ffffff;
+    --paper-soft: #f4f6fb;
+    --ink: #101828;
+    --ink-dim: #5b6577;
+    --line: #e2e6ee;
+    --display: 'Georgia', 'Times New Roman', serif;
+    --sans: 'Helvetica Neue', Arial, sans-serif;
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    border-radius: 16px;
+    max-width: 560px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(10,31,68,0.18), 0 2px 8px rgba(10,31,68,0.08);
+    border: 1px solid var(--line);
+  }
+  #ref-flyer-root * { box-sizing: border-box; }
+
+  .rf-hero {
+    padding: 40px 32px 32px;
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .rf-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,160,23,0.22) 0%, transparent 70%);
+  }
+  .rf-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--emerald), var(--gold), var(--blue-accent));
+  }
+  .rf-badge {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--navy-deep);
+    background: var(--gold);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .rf-headline {
+    font-family: var(--display);
+    font-size: 36px;
+    line-height: 1.25;
+    margin: 0 0 14px;
+    color: #ffffff;
+    position: relative;
+  }
+  .rf-headline .rf-amt {
+    color: var(--gold);
+    font-weight: bold;
+  }
+  .rf-sub {
+    font-size: 17px;
+    color: #c9d3e8;
+    max-width: 410px;
+    margin: 0 auto;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  .rf-body {
+    padding: 28px 32px 32px;
+    background: var(--paper);
+  }
+
+  .rf-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .rf-step {
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 10px 14px;
+    text-align: center;
+  }
+  .rf-step .rf-step-num {
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--blue-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #eaf0fe;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .rf-step .rf-step-text {
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.45;
+  }
+
+  .rf-form-title {
+    font-family: var(--display);
+    font-size: 21px;
+    color: var(--navy-deep);
+    margin: 0 0 6px;
+    font-weight: bold;
+  }
+  .rf-form-sub {
+    font-size: 15px;
+    color: var(--ink-dim);
+    margin: 0 0 20px;
+  }
+
+  .rf-field-group {
+    margin-bottom: 18px;
+  }
+  .rf-field-group h4 {
+    font-size: 13.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-accent);
+    margin: 0 0 9px;
+    font-weight: 700;
+  }
+  .rf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .rf-field label {
+    display: block;
+    font-size: 14px;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .rf-field input {
+    width: 100%;
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 7px;
+  }
+  .rf-field input:focus {
+    outline: none;
+    border-color: var(--blue-accent);
+    box-shadow: 0 0 0 3px rgba(46,111,242,0.12);
+  }
+  .rf-field input::placeholder { color: #a3aabb; }
+  .rf-field input:disabled { background: #f4f6fb; opacity: 0.7; }
+
+  .rf-btn-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .rf-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 15px 16px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: var(--sans);
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: transform 0.12s ease, opacity 0.12s ease, box-shadow 0.12s ease;
+  }
+  .rf-btn:active { transform: scale(0.98); }
+  .rf-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .rf-btn-primary {
+    background: var(--emerald);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(15,157,110,0.28);
+  }
+  .rf-btn-primary:hover { opacity: 0.92; }
+  .rf-btn-secondary {
+    background: var(--navy-deep);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(10,31,68,0.22);
+  }
+  .rf-btn-secondary:hover { opacity: 0.92; }
+
+  .rf-status {
+    margin-top: 10px;
+    font-size: 14.5px;
+    color: var(--emerald);
+    text-align: center;
+    min-height: 16px;
+    font-weight: 600;
+  }
+  .rf-status.rf-status-error { color: #c0392b; }
+
+  .rf-fineprint {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: #8891a1;
+    line-height: 1.65;
+  }
+</style>
+
+<script>
+(function() {
+  const root = document.getElementById('ref-flyer-root');
+  const ACCOUNT_LINK = "https://a.aonelink.in/ANGOne/IaiSSLr";
+  const BONUS_AMOUNT = "₹300";
+  const SUB_BROKER_CODE = "NK57527";
+
+  root.innerHTML = `
+    <div class="rf-hero">
+      <div class="rf-badge">Refer &amp; Earn Program</div>
+      <h1 class="rf-headline">Earn <span class="rf-amt">${BONUS_AMOUNT}</span><br>for every friend you refer</h1>
+      <p class="rf-sub">Great investments start with the right introduction. Refer a friend, open the door to smart investing — and earn ${BONUS_AMOUNT} the moment their account goes live.</p>
+    </div>
+
+    <div class="rf-body">
+      <div class="rf-steps">
+        <div class="rf-step">
+          <span class="rf-step-num">1</span>
+          <div class="rf-step-text">Fill in your &amp; your friend's details below</div>
+        </div>
+        <div class="rf-step">
+          <span class="rf-step-num">2</span>
+          <div class="rf-step-text">We save it &amp; send them the account link</div>
+        </div>
+        <div class="rf-step">
+          <span class="rf-step-num">3</span>
+          <div class="rf-step-text">Get ${BONUS_AMOUNT} once their account is active</div>
+        </div>
+      </div>
+
+      <div class="rf-form-title">Client Referral Form</div>
+      <p class="rf-form-sub">Enter details below — this saves your referral to our records and generates a ready-to-send WhatsApp message.</p>
+
+      <div class="rf-field-group">
+        <h4>Your Details (Referrer)</h4>
+        <div class="rf-row">
+          <div class="rf-field">
+            <label for="rf-your-name">Your Name</label>
+            <input id="rf-your-name" type="text" placeholder="e.g. Rahul Sharma">
+          </div>
+          <div class="rf-field">
+            <label for="rf-your-phone">Your Phone</label>
+            <input id="rf-your-phone" type="tel" placeholder="10-digit mobile number">
+          </div>
+        </div>
+        <div class="rf-row" style="margin-top:10px;">
+          <div class="rf-field" style="grid-column: 1 / -1;">
+            <label for="rf-your-client-code">Your Angel One Client Code</label>
+            <input id="rf-your-client-code" type="text" placeholder="e.g. A123456">
+          </div>
+        </div>
+      </div>
+
+      <div class="rf-field-group">
+        <h4>Friend's Details (Referee)</h4>
+        <div class="rf-row">
+          <div class="rf-field">
+            <label for="rf-friend-name">Friend's Name</label>
+            <input id="rf-friend-name" type="text" placeholder="e.g. Priya Verma">
+          </div>
+          <div class="rf-field">
+            <label for="rf-friend-phone">Friend's Phone</label>
+            <input id="rf-friend-phone" type="tel" placeholder="10-digit mobile number">
+          </div>
+        </div>
+      </div>
+
+      <div class="rf-btn-row">
+        <button class="rf-btn rf-btn-primary" id="rf-generate">Save Referral &amp; Open WhatsApp</button>
+        <a class="rf-btn rf-btn-secondary" href="${ACCOUNT_LINK}" target="_blank" rel="noopener">Open Angel One Demat Account Now</a>
+      </div>
+      <div class="rf-status" id="rf-status"></div>
+
+      <div class="rf-fineprint">
+        Sub-broker/partner code: ${SUB_BROKER_CODE}. ${BONUS_AMOUNT} referral bonus is credited once the referred account is opened and active (as per current terms). Bonus amount and terms may be updated from time to time. Angel One account opening is subject to Angel One's own KYC and onboarding process — submitting this form does not open an account with Angel One directly, it only records your referral with us.
+      </div>
+    </div>
+  `;
+
+  const statusEl = root.querySelector('#rf-status');
+  const generateBtn = root.querySelector('#rf-generate');
+
+  function setStatus(msg, isError) {
+    statusEl.textContent = msg;
+    statusEl.classList.toggle('rf-status-error', !!isError);
+  }
+
+  function setFormDisabled(disabled) {
+    root.querySelectorAll('input').forEach(el => el.disabled = disabled);
+    generateBtn.disabled = disabled;
+  }
+
+  generateBtn.addEventListener('click', async function() {
+    const yourName = root.querySelector('#rf-your-name').value.trim();
+    const yourPhone = root.querySelector('#rf-your-phone').value.trim();
+    const yourClientCode = root.querySelector('#rf-your-client-code').value.trim();
+    const friendName = root.querySelector('#rf-friend-name').value.trim();
+    const friendPhone = root.querySelector('#rf-friend-phone').value.trim();
+
+    if (!yourName || !friendName) {
+      setStatus("Please fill in your name and your friend's name first.", true);
+      return;
+    }
+
+    setFormDisabled(true);
+    setStatus("Saving your referral...");
+
+    try {
+      // Backend: writes this referral into Firestore ("referrals" collection).
+      // See window.saveReferral, wired up in the Firebase module script below.
+      await window.saveReferral({
+        referrerName: yourName,
+        referrerPhone: yourPhone,
+        referrerClientCode: yourClientCode,
+        friendName: friendName,
+        friendPhone: friendPhone,
+        subBrokerCode: SUB_BROKER_CODE,
+        source: window.location.hostname || "wealthyhome.in"
+      });
+    } catch (err) {
+      console.error("Failed to save referral:", err);
+      setFormDisabled(false);
+      setStatus("Could not save your referral right now. Please try again in a moment.", true);
+      return;
+    }
+
+    const codeLine = yourClientCode
+      ? `\n\nMy Angel One Client Code (for the referral to be linked to me): ${yourClientCode}`
+      : "";
+
+    const message = `Hi ${friendName}! This is ${yourName}. I thought you'd be interested in opening a free Demat account with Angel One — quick 5-minute process. Here's the link: ${ACCOUNT_LINK}${codeLine}\n\n(If you open it through me, we both benefit — I get a ${BONUS_AMOUNT} referral reward once your account is active!)`;
+
+    const encoded = encodeURIComponent(message);
+    const waUrl = friendPhone
+      ? `https://wa.me/91${friendPhone.replace(/\D/g,'')}?text=${encoded}`
+      : `https://wa.me/?text=${encoded}`;
+
+    navigator.clipboard?.writeText(message).catch(() => {});
+    setFormDisabled(false);
+    setStatus("Saved! Message copied — opening WhatsApp...");
+    window.open(waUrl, '_blank');
+  });
+})();
+</script>
+
+<!--
+  ============================================================
+  BACKEND: Firebase (Firestore) wiring
+  ============================================================
+  This is the "backend" for the form above. It uses the Firebase
+  Web SDK (modular, v9+) loaded straight from Google's CDN, so
+  there is no separate server to run — Firestore *is* the backend,
+  and Firebase Hosting will serve this file as a static page.
+
+  Deploy steps (Firebase Hosting on your domain wealthyhome.in):
+    1. npm install -g firebase-tools
+    2. firebase login
+    3. firebase init hosting   (point "public" dir at the folder holding this file,
+       select your existing project "wealthyhome-76f57")
+    4. Put this file in that public dir as index.html
+    5. firebase deploy
+    6. In Firebase Console -> Hosting -> Add custom domain -> wealthyhome.in,
+       then update your domain's DNS records as instructed.
+
+  Firestore security rules (Console -> Firestore -> Rules) — IMPORTANT:
+  your Firebase config below is meant to be public (it's just a client
+  pointer to your project), but your Firestore RULES are what actually
+  keep the data safe. Use rules like this so visitors can only ADD a
+  referral, never read/list/edit/delete anyone else's:
+
+    rules_version = '2';
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /referrals/{docId} {
+          allow create: if request.resource.data.referrerName is string
+                         && request.resource.data.friendName is string;
+          allow read, update, delete: if false;
+        }
+      }
+    }
+
+  To VIEW submitted referrals, use the Firebase Console
+  (Firestore Database -> referrals collection) or build a
+  separate admin-only page later, protected by Firebase Auth.
+  ============================================================
+-->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDk9-8qK6zCByxy9afoiEmQJtWxGdkplo4",
+    authDomain: "wealthyhome-76f57.firebaseapp.com",
+    projectId: "wealthyhome-76f57",
+    storageBucket: "wealthyhome-76f57.firebasestorage.app",
+    messagingSenderId: "435425821876",
+    appId: "1:435425821876:web:ee411158105dc7d27b83e1",
+    measurementId: "G-BBZVPCWTHG"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  let analytics;
+  try { analytics = getAnalytics(app); } catch (e) { /* analytics can fail on some browsers/blockers, safe to ignore */ }
+  const db = getFirestore(app);
+
+  // Exposed for the flyer script above to call when the button is clicked.
+  window.saveReferral = async function(data) {
+    await addDoc(collection(db, "referrals"), {
+      ...data,
+      createdAt: serverTimestamp()
+    });
+  };
+</script>
+
+</body>
+</html>
