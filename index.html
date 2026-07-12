@@ -1,309 +1,516 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Refer & Earn Program</title>
-<style>
-  :root{
-    --navy:#0f1f4d;
-    --navy-dark:#0a1638;
-    --gold:#e0b13f;
-    --green:#3f9668;
-    --text-light:#dbe3f5;
-    --card-bg:#f4f6fb;
-    --card-border:#e2e6f0;
-    --label-blue:#3355dd;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    font-family:'Segoe UI', Arial, sans-serif;
-    background:#e9edf5;
-    display:flex;
-    justify-content:center;
-    padding:24px 12px;
-  }
-  .card{
-    max-width:520px;
-    width:100%;
-    background:#fff;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 10px 40px rgba(20,30,60,0.12);
-  }
-  .hero{
-    background:linear-gradient(160deg,var(--navy) 0%, var(--navy-dark) 100%);
-    padding:36px 28px 34px;
-    text-align:center;
-    position:relative;
-  }
-  .badge{
-    display:inline-block;
-    background:var(--gold);
-    color:var(--navy-dark);
-    font-weight:700;
-    font-size:12px;
-    letter-spacing:1px;
-    padding:8px 20px;
-    border-radius:999px;
-    margin-bottom:22px;
-  }
-  h1.headline{
-    font-family:Georgia,'Times New Roman',serif;
-    color:#fff;
-    font-size:38px;
-    line-height:1.15;
-    margin:0 0 6px;
-  }
-  h1.headline .amount{
-    color:var(--gold);
-  }
-  h1.headline .sub{
-    display:block;
-    font-size:34px;
-  }
-  .hero p{
-    color:var(--text-light);
-    font-size:15px;
-    line-height:1.55;
-    max-width:380px;
-    margin:18px auto 0;
-  }
-  .rule{
-    height:4px;
-    background:linear-gradient(90deg,var(--green),var(--gold),var(--navy));
-  }
-  .body-pad{
-    padding:28px 24px 30px;
-  }
-  .steps{
-    display:flex;
-    gap:12px;
-    margin-bottom:28px;
-  }
-  .step{
-    flex:1;
-    background:var(--card-bg);
-    border:1px solid var(--card-border);
-    border-radius:12px;
-    padding:16px 10px;
-    text-align:center;
-  }
-  .step .num{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:#dfe6fb;
-    color:var(--label-blue);
-    font-weight:700;
-    font-size:16px;
-    margin-bottom:10px;
-  }
-  .step p{
-    margin:0;
-    font-size:13.5px;
-    color:#333;
-    line-height:1.35;
-  }
-  h2.form-title{
-    font-family:Georgia,'Times New Roman',serif;
-    color:var(--navy-dark);
-    font-size:26px;
-    margin:0 0 10px;
-  }
-  .form-desc{
-    color:#555;
-    font-size:14.5px;
-    line-height:1.5;
-    margin:0 0 22px;
-  }
-  .section-label{
-    color:var(--label-blue);
-    font-weight:700;
-    font-size:12.5px;
-    letter-spacing:0.6px;
-    margin:0 0 12px;
-  }
-  .row{
-    display:flex;
-    gap:14px;
-    margin-bottom:16px;
-  }
-  .field{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-  }
-  .field label{
-    font-size:14px;
-    color:#222;
-    margin-bottom:6px;
-  }
-  .field input{
-    border:1px solid #d7dbe6;
-    border-radius:10px;
-    padding:12px 14px;
-    font-size:14px;
-    outline:none;
-    color:#222;
-    background:#fff;
-  }
-  .field input::placeholder{
-    color:#a9aec2;
-  }
-  .field input:focus{
-    border-color:var(--label-blue);
-    box-shadow:0 0 0 3px rgba(51,85,221,0.12);
-  }
-  .full{
-    margin-bottom:22px;
-  }
-  .divider-gap{
-    margin-top:26px;
-  }
-  .btn{
-    display:block;
-    width:100%;
-    text-align:center;
-    padding:16px 18px;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:700;
-    border:none;
-    cursor:pointer;
-    text-decoration:none;
-    box-sizing:border-box;
-  }
-  .btn-save{
-    background:var(--green);
-    color:#fff;
-    margin-bottom:14px;
-  }
-  .btn-save:hover{
-    background:#358357;
-  }
-  .btn-open{
-    background:var(--navy-dark);
-    color:#fff;
-  }
-  .btn-open:hover{
-    background:#050d24;
-  }
-  .status{
-    text-align:center;
-    font-size:13px;
-    color:var(--green);
-    margin:-4px 0 14px;
-    min-height:16px;
-  }
-</style>
-</head>
-<body>
+/* ===================================================================
+   NIVARA INVEST — Design tokens
+   Ink navy + signal green (growth) + gold (reward) + paper white
+   Display: Fraunces / Body: Inter / Data: IBM Plex Mono
+=================================================================== */
 
-<div class="card">
-  <div class="hero">
-    <span class="badge">REFER &amp; EARN PROGRAM</span>
-    <h1 class="headline">Earn <span class="amount">₹300</span><span class="sub">for every friend you refer</span></h1>
-    <p>Great investments start with the right introduction. Refer a friend, open the door to smart investing — and earn ₹300 the moment their account goes live.</p>
-  </div>
-  <div class="rule"></div>
+:root{
+  --ink: #0B1E39;
+  --ink-2: #142B4F;
+  --paper: #F6F8FB;
+  --paper-2: #ECF0F6;
+  --white: #FFFFFF;
+  --charcoal: #131A2A;
+  --slate: #5B6478;
+  --slate-light: #8891A3;
+  --signal: #00C896;
+  --signal-dark: #00A67D;
+  --gold: #E8B34C;
+  --gold-dark: #C9922C;
+  --rose: #FF5C5C;
+  --line: #E2E6EE;
+  --line-dark: rgba(255,255,255,0.12);
 
-  <div class="body-pad">
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <p>Fill in your &amp; your friend's details below</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <p>We save it &amp; send them the account link</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <p>Get ₹300 once their account is active</p>
-      </div>
-    </div>
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-    <h2 class="form-title">Client Referral Form</h2>
-    <p class="form-desc">Enter details below — this saves your referral to our records and generates a ready-to-send WhatsApp message.</p>
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+  --shadow-card: 0 1px 2px rgba(11,30,57,0.04), 0 8px 24px rgba(11,30,57,0.06);
+  --shadow-lift: 0 12px 32px rgba(11,30,57,0.14);
+}
 
-    <form id="referralForm">
-      <p class="section-label">YOUR DETAILS (REFERRER)</p>
-      <div class="row">
-        <div class="field">
-          <label for="yourName">Your Name</label>
-          <input type="text" id="yourName" placeholder="e.g. Rahul Sharma" required>
-        </div>
-        <div class="field">
-          <label for="yourPhone">Your Phone</label>
-          <input type="tel" id="yourPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-        </div>
-      </div>
-      <div class="field full">
-        <label for="clientCode">Your Angel One Client Code</label>
-        <input type="text" id="clientCode" placeholder="e.g. A123456" required>
-      </div>
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ margin:0; padding:0; list-style:none; }
+button{ font-family: inherit; cursor:pointer; }
+.container{
+  width:100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+@media (max-width: 720px){ .container{ padding: 0 20px; } }
 
-      <p class="section-label">FRIEND'S DETAILS (REFEREE)</p>
-      <div class="row">
-        <div class="field">
-          <label for="friendName">Friend's Name</label>
-          <input type="text" id="friendName" placeholder="e.g. Priya Verma" required>
-        </div>
-        <div class="field">
-          <label for="friendPhone">Friend's Phone</label>
-          <input type="tel" id="friendPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-        </div>
-      </div>
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
 
-      <div class="status" id="statusMsg"></div>
+/* ===================== HEADER / NAV ===================== */
+.site-header{
+  position: sticky;
+  top:0;
+  z-index: 100;
+  background: var(--ink);
+  border-bottom: 1px solid var(--line-dark);
+}
+.nav-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height: 72px;
+  gap: 24px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.2px;
+  flex-shrink:0;
+}
+.brand-mark{
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--signal), var(--signal-dark));
+  display:flex; align-items:center; justify-content:center;
+}
+.brand-mark svg{ width:16px; height:16px; }
 
-      <button type="submit" class="btn btn-save">Save Referral &amp; Open WhatsApp</button>
-    </form>
+.primary-nav{
+  display:flex;
+  align-items:center;
+  gap: 4px;
+  flex: 1;
+  justify-content:center;
+}
+.nav-item{ position: relative; }
+.nav-link{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  border-radius: var(--radius-s);
+  white-space:nowrap;
+  transition: color .15s ease, background .15s ease;
+}
+.nav-link:hover{ color: var(--white); background: rgba(255,255,255,0.06); }
+.nav-item.has-menu .nav-link svg{ transition: transform .18s ease; }
+.nav-item.has-menu:hover .nav-link svg{ transform: rotate(180deg); }
 
-    <a class="btn btn-open" href="https://a.aonelink.in/ANGOne/IaiSSLr" target="_blank" rel="noopener noreferrer">Open Angel One Demat Account Now</a>
-  </div>
-</div>
+.nav-link.is-reward{
+  color: var(--gold);
+}
+.nav-link.is-reward:hover{ color:#F7CD7C; }
+.reward-badge{
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 2px 6px;
+  border-radius: 5px;
+  letter-spacing: 0.2px;
+}
 
-<script>
-  document.getElementById('referralForm').addEventListener('submit', function(e){
-    e.preventDefault();
+.dropdown{
+  position:absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: var(--white);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-lift);
+  padding: 8px;
+  opacity:0;
+  visibility:hidden;
+  transform: translateY(6px);
+  transition: opacity .16s ease, transform .16s ease, visibility .16s;
+}
+.nav-item.has-menu:hover .dropdown{
+  opacity:1; visibility:visible; transform: translateY(0);
+}
+.dropdown a{
+  display:block;
+  padding: 10px 12px;
+  border-radius: var(--radius-s);
+  font-size: 14px;
+  color: var(--charcoal);
+}
+.dropdown a:hover{ background: var(--paper-2); }
+.dropdown a small{
+  display:block;
+  color: var(--slate);
+  font-size: 12px;
+  margin-top: 2px;
+  font-weight:400;
+}
 
-    const yourName = document.getElementById('yourName').value.trim();
-    const yourPhone = document.getElementById('yourPhone').value.trim();
-    const clientCode = document.getElementById('clientCode').value.trim();
-    const friendName = document.getElementById('friendName').value.trim();
-    const friendPhone = document.getElementById('friendPhone').value.trim();
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex-shrink:0;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+}
+.btn-ghost{
+  color: var(--white);
+  border-color: rgba(255,255,255,0.28);
+}
+.btn-ghost:hover{ background: rgba(255,255,255,0.08); }
+.btn-solid{
+  background: var(--signal);
+  color: var(--ink);
+}
+.btn-solid:hover{ background: var(--signal-dark); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,200,150,0.35); }
+.btn-gold{
+  background: var(--gold);
+  color: var(--ink);
+}
+.btn-gold:hover{ background: var(--gold-dark); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(232,179,76,0.4); }
+.btn-outline{
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.btn-outline:hover{ background: var(--ink); color: var(--white); }
+.btn-lg{ padding: 14px 26px; font-size: 15px; }
 
-    if(!yourName || !yourPhone || !clientCode || !friendName || !friendPhone){
-      document.getElementById('statusMsg').textContent = 'Please fill in all fields.';
-      document.getElementById('statusMsg').style.color = '#c0392b';
-      return;
-    }
+.nav-toggle{
+  display:none;
+  background:none; border:none; color:var(--white);
+  padding: 8px;
+}
 
-    // Save referral locally (in-memory + localStorage as a simple record)
-    try{
-      const referrals = JSON.parse(localStorage.getItem('referrals') || '[]');
-      referrals.push({ yourName, yourPhone, clientCode, friendName, friendPhone, savedAt: new Date().toISOString() });
-      localStorage.setItem('referrals', JSON.stringify(referrals));
-    }catch(err){
-      console.warn('Could not save referral locally:', err);
-    }
+/* ===================== TICKER (signature element) ===================== */
+.ticker-band{
+  background: var(--ink-2);
+  border-bottom: 1px solid var(--line-dark);
+  overflow: hidden;
+  padding: 10px 0;
+}
+.ticker-track{
+  display:flex;
+  gap: 36px;
+  width: max-content;
+  animation: ticker-scroll 32s linear infinite;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+@keyframes ticker-scroll{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+.tick{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color: rgba(255,255,255,0.75);
+  white-space:nowrap;
+}
+.tick b{ color: var(--white); font-weight:600; }
+.tick .up{ color: var(--signal); }
+.tick .down{ color: var(--rose); }
 
-    document.getElementById('statusMsg').style.color = '#3f9668';
-    document.getElementById('statusMsg').textContent = 'Referral saved! Opening WhatsApp...';
+/* ===================== HERO ===================== */
+.hero{
+  background: var(--ink);
+  color: var(--white);
+  padding: 88px 0 100px;
+  position: relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  right: -120px; top: -80px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(0,200,150,0.18), transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items:center;
+  position:relative;
+}
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 18px;
+}
+.hero h1{
+  font-family: var(--font-display);
+  font-size: 52px;
+  line-height: 1.08;
+  font-weight: 600;
+  margin: 0 0 20px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em{
+  font-style: italic;
+  color: var(--signal);
+}
+.hero p.lede{
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.72);
+  max-width: 480px;
+  margin: 0 0 32px;
+}
+.hero-cta{ display:flex; gap: 14px; margin-bottom: 40px; flex-wrap:wrap; }
+.hero-stats{
+  display:flex;
+  gap: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+}
+.hero-stats div b{
+  display:block;
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--white);
+}
+.hero-stats div span{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.55);
+}
 
-    const accountLink = 'https://a.aonelink.in/ANGOne/IaiSSLr';
-    const message = `Hi ${friendName}! ${yourName} thinks you'd love smart investing with Angel One. Open your free Demat account here: ${accountLink}`;
-    const whatsappUrl = `https://wa.me/91${friendPhone}?text=${encodeURIComponent(message)}`;
+.hero-panel{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-l);
+  padding: 24px;
+  backdrop-filter: blur(6px);
+}
+.panel-head{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.panel-row{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 13px 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+.panel-row:last-child{ border-bottom:none; }
+.panel-row .name{ color: var(--white); font-weight:600; letter-spacing: 0.2px; }
+.panel-row .sub{ color: rgba(255,255,255,0.5); font-size: 11.5px; display:block; font-family: var(--font-body); margin-top:2px;}
+.chip{
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight:600;
+}
+.chip.up{ background: rgba(0,200,150,0.15); color: var(--signal); }
+.chip.down{ background: rgba(255,92,92,0.15); color: var(--rose); }
 
-    window.open(whatsappUrl, '_blank');
-  });
-</script>
+/* ===================== SECTIONS ===================== */
+section{ padding: 88px 0; }
+.section-head{
+  max-width: 620px;
+  margin: 0 0 48px;
+}
+.section-head .eyebrow{ color: var(--gold); }
+.section-head h2{
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+.section-head p{
+  color: var(--slate);
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin:0;
+}
 
-</body>
-</html>
+/* product grid */
+.product-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.p-card{
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s;
+}
+.p-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: transparent; }
+.p-icon{
+  width: 44px; height:44px;
+  border-radius: 12px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom: 18px;
+  background: var(--paper-2);
+  color: var(--ink);
+}
+.p-card h3{
+  font-size: 17px;
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+.p-card p{
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+.p-card .go{
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  display:inline-flex; align-items:center; gap:6px;
+}
+.p-card.reward{
+  background: linear-gradient(150deg, var(--ink) 0%, var(--ink-2) 100%);
+  border: 1px solid transparent;
+  color: var(--white);
+}
+.p-card.reward .p-icon{ background: rgba(232,179,76,0.16); color: var(--gold); }
+.p-card.reward h3{ color: var(--white); }
+.p-card.reward p{ color: rgba(255,255,255,0.68); }
+.p-card.reward .go{ color: var(--gold); }
+
+/* referral banner */
+.referral-banner{
+  background: linear-gradient(135deg, #fff6e6, #fdecc8);
+  border: 1px solid #f0dba8;
+  border-radius: var(--radius-l);
+  padding: 48px;
+  display:grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 40px;
+  align-items:center;
+}
+.referral-banner .eyebrow{ color: var(--gold-dark); }
+.referral-banner h2{
+  font-family: var(--font-display);
+  font-size: 30px;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.referral-banner p{
+  color: var(--slate);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 22px;
+  max-width: 460px;
+}
+.referral-figure{
+  background: var(--white);
+  border-radius: var(--radius-m);
+  padding: 24px;
+  border: 1px solid #f0dba8;
+}
+.referral-figure .amt{
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--gold-dark);
+  margin: 0;
+}
+.referral-figure .amt span{ font-size: 16px; color: var(--slate); font-family: var(--font-body); }
+.referral-figure hr{ border: none; border-top: 1px solid var(--line); margin: 14px 0; }
+.referral-figure .row{ display:flex; justify-content:space-between; font-size: 13px; color: var(--slate); padding: 5px 0; }
+
+/* footer */
+.site-footer{
+  background: var(--ink);
+  color: rgba(255,255,255,0.6);
+  padding: 56px 0 28px;
+  font-size: 13.5px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-grid h4{
+  color: var(--white);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 14px;
+}
+.footer-grid a{ display:block; margin-bottom: 9px; color: rgba(255,255,255,0.6); }
+.footer-grid a:hover{ color: var(--white); }
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top: 22px;
+  flex-wrap:wrap;
+  gap: 12px;
+}
+.footer-disclaimer{
+  max-width: 760px;
+  color: rgba(255,255,255,0.38);
+  font-size: 11.5px;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+/* mobile nav */
+@media (max-width: 980px){
+  .primary-nav{ display:none; }
+  .nav-toggle{ display:block; }
+  .hero-grid{ grid-template-columns: 1fr; }
+  .product-grid{ grid-template-columns: repeat(2, 1fr); }
+  .referral-banner{ grid-template-columns: 1fr; }
+  .footer-grid{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px){
+  .hero h1{ font-size: 36px; }
+  .product-grid{ grid-template-columns: 1fr; }
+  .nav-actions .btn-ghost{ display:none; }
+  .footer-grid{ grid-template-columns: 1fr; }
+  .referral-banner{ padding: 28px; }
+}
